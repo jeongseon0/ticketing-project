@@ -1,11 +1,8 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
-
 import { Role } from '../types/userRole.type';
 
 @Index('email', ['email'], { unique: true })
-@Entity({
-  name: 'users'
-})
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn()
   id: number;

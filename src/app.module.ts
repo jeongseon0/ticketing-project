@@ -10,8 +10,11 @@ import { UserModule } from './user/user.module';
 
 import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { ShowModule } from './show/show.module';
 
 import Joi from 'joi';
+import { Show } from './show/entities/show.entity';
+import { TicketingModule } from './ticketing/ticketing.module';
 
 const typeOrmModuleOptions = {
   useFactory: async (configService: ConfigService): Promise<TypeOrmModuleOptions> => ({
@@ -22,7 +25,7 @@ const typeOrmModuleOptions = {
     host: configService.get('DB_HOST'),
     port: configService.get('DB_PORT'),
     database: configService.get('DB_NAME'),
-    entities: [User],
+    entities: [User, Show],
     synchronize: configService.get('DB_SYNC'),
     logging: true
   }),
@@ -44,7 +47,9 @@ const typeOrmModuleOptions = {
     }),
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     UserModule,
-    AuthModule
+    AuthModule,
+    ShowModule,
+    TicketingModule
   ],
   controllers: [AppController],
   providers: [AppService]
