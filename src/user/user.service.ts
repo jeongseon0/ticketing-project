@@ -23,6 +23,7 @@ export class UserService {
   async signup(createUserDto: CreateUserDto) {
     const email = createUserDto.email;
     const nick_name = createUserDto.nickName;
+    const role = createUserDto.role;
     console.log(createUserDto);
     const existingUser = await this.findByEmail(email);
     if (existingUser) {
@@ -39,7 +40,8 @@ export class UserService {
     await this.userRepository.save({
       email: email,
       nick_name: nick_name,
-      password: hashedPassword
+      password: hashedPassword,
+      role: role
     });
   }
 

@@ -7,14 +7,8 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 import { UserModule } from './user/user.module';
-import { ShowModule } from './show/show.module';
-import { TicketingModule } from './ticketing/ticketing.module';
-import { SeatModule } from './seat/seat.module';
 
 import { User } from './user/entities/user.entity';
-import { Show } from './show/entities/show.entity';
-import { Ticketing } from './ticketing/entities/ticketing.entity';
-import { Seat } from './seat/entities/seat.entity';
 import { AuthModule } from './auth/auth.module';
 
 import Joi from 'joi';
@@ -28,7 +22,7 @@ const typeOrmModuleOptions = {
     host: configService.get('DB_HOST'),
     port: configService.get('DB_PORT'),
     database: configService.get('DB_NAME'),
-    entities: [User, Show, Ticketing, Seat],
+    entities: [User],
     synchronize: configService.get('DB_SYNC'),
     logging: true
   }),
@@ -50,9 +44,6 @@ const typeOrmModuleOptions = {
     }),
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     UserModule,
-    ShowModule,
-    TicketingModule,
-    SeatModule,
     AuthModule
   ],
   controllers: [AppController],

@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsEmail, IsString, MinLength, MaxLength, IsStrongPassword } from 'class-validator';
+import { IsNotEmpty, IsEmail, IsString, MinLength, MaxLength, IsStrongPassword, IsEnum } from 'class-validator';
+import { Role } from '../types/userRole.type';
 
 export class CreateUserDto {
   @IsEmail()
@@ -19,4 +20,7 @@ export class CreateUserDto {
   @IsStrongPassword()
   @IsNotEmpty({ message: '확인을 위해 비밀번호를 다시 한 번 입력해주세요.' })
   confirmPassword: string;
+
+  @IsEnum(Role)
+  role: Role;
 }

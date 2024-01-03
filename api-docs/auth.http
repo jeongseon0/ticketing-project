@@ -9,10 +9,11 @@ POST {{domain}}/user/signup
 Content-Type: application/json
 
 {
-    "email":"admin@gmail.com",
-    "password":"test_pw",
-  "role":1,
-    "nickname" : "닉네임"
+    "email":"test@gmail.com",
+    "nickName" : "닉네임",
+    "password":"Q1w2e3r4.",
+    "confirmPassword":"Q1w2e3r4.",
+    "role": 1
 }
 
 ###
@@ -25,8 +26,8 @@ Content-Type: application/json
     "email":"test22@gmail.com",
     "nickName" : "닉네임22",
     "password":"Q1w2e3r4.",
-    "confirmPassword":"Q1w2e3r4."
-    // "role":0,
+    "confirmPassword":"Q1w2e3r4.",
+    "role":0
 }
 
 ###
