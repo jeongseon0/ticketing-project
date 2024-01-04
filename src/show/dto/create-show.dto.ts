@@ -19,7 +19,10 @@ export class CreateShowDto {
 
   // @IsDate()
   @IsNotEmpty()
-  date: number[];
+  date: Date[];
+
+  @IsNotEmpty()
+  price: number;
 
   @IsEnum(Category)
   @IsNotEmpty()

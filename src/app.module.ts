@@ -15,6 +15,7 @@ import { ShowModule } from './show/show.module';
 import Joi from 'joi';
 import { Show } from './show/entities/show.entity';
 import { TicketingModule } from './ticketing/ticketing.module';
+import { Ticketing } from './ticketing/entities/ticketing.entity';
 
 const typeOrmModuleOptions = {
   useFactory: async (configService: ConfigService): Promise<TypeOrmModuleOptions> => ({
@@ -25,7 +26,7 @@ const typeOrmModuleOptions = {
     host: configService.get('DB_HOST'),
     port: configService.get('DB_PORT'),
     database: configService.get('DB_NAME'),
-    entities: [User, Show],
+    entities: [User, Show, Ticketing],
     synchronize: configService.get('DB_SYNC'),
     logging: true
   }),

@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateShowDto } from './dto/create-show.dto';
-import { UpdateShowDto } from './dto/update-show.dto';
+// import { UpdateShowDto } from './dto/update-show.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Show } from './entities/show.entity';
 import { Repository } from 'typeorm';
@@ -17,21 +17,13 @@ export class ShowService {
     const existShow = await this.findByTitle(createShowDto.title);
     if (existShow) throw new ConflictException('이미 존재하는 공연입니다.');
 
-    const date = new Date(
-      createShowDto.date[0],
-      createShowDto.date[1],
-      createShowDto.date[2],
-      createShowDto.date[3],
-      createShowDto.date[4],
-      createShowDto.date[5]
-    );
-
     return await this.showRepository.save({
       title: createShowDto.title,
       contents: createShowDto.contents,
       image: createShowDto.image,
       location: createShowDto.location,
-      date: date,
+      date: createShowDto.date,
+      price: createShowDto.price,
       category: createShowDto.category
     });
   }

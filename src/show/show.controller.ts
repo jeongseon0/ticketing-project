@@ -27,11 +27,11 @@ export class ShowController {
     return this.showService.findOne(+id);
   }
 
-  @Roles(Role.Admin)
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateShowDto: UpdateShowDto) {
-    return this.showService.update(+id, updateShowDto);
-  }
+  // @Roles(Role.Admin)
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateShowDto: UpdateShowDto) {
+  //   return this.showService.update(+id, updateShowDto);
+  // }
 
   @Roles(Role.Admin)
   @Delete(':id')

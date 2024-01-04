@@ -22,6 +22,9 @@ export class Show {
   @Column({ type: 'date', nullable: false })
   date: Date;
 
+  @Column({ type: 'bigint', nullable: false })
+  price: number;
+
   @Column({ type: 'enum', enum: Category, nullable: false })
   catergory: Category;
 

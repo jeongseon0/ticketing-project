@@ -1,0 +1,25 @@
+@domain = http://localhost:3000
+@AccessToken = {{loginToken.response.body.$.access_token}}
+
+
+###
+# 로그인
+# 이 요청은 사용자 로그인을 처리합니다.
+# @name loginToken
+POST {{domain}}/user/login
+Content-Type: application/json
+
+{
+    "email":"test22@gmail.com",
+    "password":"Q1w2e3r4."
+}
+
+###
+# 예매하기
+POST {{domain}}/ticketing
+Authorization: Bearer {{AccessToken}}
+Content-Type: application/json
+
+{
+    "show_id": 2
+}
