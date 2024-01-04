@@ -1,7 +1,13 @@
 import { compare, hash } from 'bcrypt';
 import _ from 'lodash';
 
-import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
@@ -79,6 +85,21 @@ export class UserService {
 
   comparePasswords(password, confirmPassword) {
     return password === confirmPassword;
+  }
+
+  async usePoint(user_id: number, price: number) {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>', user_id, price);
+    const user = await this.findOne(user_id);
+    console.log(typeof user.point);
+
+    if (!user) throw new NotFoundException('해당 유저를 찾을 수 없습니다.');
+    if (+user.point < price) throw new BadRequestException('소지하고있는 포인트가 부족합니다!');
+
+    user.point = +user.point - price;
+    await this.userRepository.update(user, user);
+
+    return `${price} 포인트가 차감되었습니다.
+    잔여포인트: ${user.point}`;
   }
 
   // update(id: number, updateUserDto: UpdateUserDto) {

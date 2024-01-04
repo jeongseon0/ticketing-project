@@ -7,11 +7,17 @@ export class Ticketing {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  show_id: number;
+
+  @Column()
+  user_id: number;
+
   @ManyToOne(() => User, { eager: true, cascade: true })
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn()
   user: User;
 
   @ManyToOne(() => Show, { eager: true, cascade: true })
-  @JoinColumn({ name: 'show_id' })
+  @JoinColumn()
   show: Show;
 }

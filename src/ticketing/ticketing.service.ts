@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-// import { CreateTicketingDto } from './dto/create-ticketing.dto';
+import { CreateTicketingDto } from './dto/create-ticketing.dto';
 // import { UpdateTicketingDto } from './dto/update-ticketing.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Ticketing } from './entities/ticketing.entity';
@@ -12,10 +12,11 @@ export class TicketingService {
     private readonly ticketingRepository: Repository<Ticketing>
   ) {}
 
-  async create(show_id: number, user_id: number) {
-    return await this.ticketingRepository.save({
-      show: { id: show_id },
-      user: { id: user_id }
+  create(show_id: number, user_id: number) {
+    console.log('333333333333333333333333');
+    return this.ticketingRepository.create({
+      user_id,
+      show_id
     });
   }
 

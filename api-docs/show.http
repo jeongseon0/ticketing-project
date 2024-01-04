@@ -26,8 +26,9 @@ Content-Type: application/json
     "contents" : "재단히 유명한 심땡땡씨의 인생 성공기!",
     "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfezm43b8qF3aMdXyiGYaqrJZKyN1md-HevQ&usqp=CAU",
     "location":"서울시",
-    "date": [2024, 0, 12, 12, 30, 0],
-    "category": 2
+    "date": "2024-1-21",
+    "price": 30000,
+    "category": 1
 }
 
 
